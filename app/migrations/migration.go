@@ -9,8 +9,8 @@ import (
 func main() {
 	infra.Initialize()
 	db := infra.SetupDB()
-
-	if err := db.AutoMigrate(&models.Item{}, &models.User{}); err != nil {
-		log.Fatal("Failed to migrate database:", err)
+	if err := db.AutoMigrate(&models.User{}, &models.Item{}); err != nil {
+		log.Fatalf("Migration failed: %v", err)
 	}
+	log.Println("Migration completed successfully")
 }
